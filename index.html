@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ServicePricePro | Free Home Service Pricing Calculators</title>
+  <meta name="description" content="Free pricing calculators for pressure washing, lawn care, house cleaning, mobile detailing, junk removal, handyman jobs, and more. Know what to charge before you take the job." />
+  <meta name="keywords" content="pressure washing pricing calculator, lawn care pricing calculator, house cleaning calculator, junk removal estimate calculator, mobile detailing price calculator, handyman pricing calculator, service business pricing" />
+  <meta name="author" content="ServicePricePro" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="ServicePricePro | Know What To Charge Before You Take The Job" />
+  <meta property="og:description" content="Free beginner-friendly pricing calculators for local service business owners and side hustlers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://dummyimage.com/1200x630/eaf4ff/0f172a&text=ServicePricePro" />
+
+  <style>
+    :root {
+      --bg: #f7fbff;
+      --white: #ffffff;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --soft: #e2e8f0;
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --blue-soft: #dbeafe;
+      --green: #16a34a;
+      --gold: #f59e0b;
+      --shadow: 0 20px 60px rgba(15, 23, 42, 0.10);
+      --shadow-soft: 0 12px 32px rgba(15, 23, 42, 0.08);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 34rem),
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.10), transparent 30rem),
+        var(--bg);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247, 251, 255, 0.84);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.78);
+    }
+
+    .nav {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      font-size: 1.22rem;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--blue), #38bdf8);
+      color: white;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.28);
+      font-size: 1.25rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 0.94rem;
+      color: #334155;
+      font-weight: 700;
+    }
+
+    .nav-cta,
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 0;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 16px 34px rgba(37, 99, 235, 0.25);
+      transition: 0.2s ease;
+    }
+
+    .nav-cta:hover,
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--blue-dark);
+    }
+
+    .btn.secondary {
+      background: var(--white);
+      color: var(--ink);
+      border: 1px solid var(--soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero {
+      padding: 72px 0 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(219, 234, 254, 0.82);
+      color: #1e40af;
+      font-weight: 900;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+      border: 1px solid rgba(37, 99, 235, 0.12);
+    }
+
+    h1 {
+      font-size: clamp(2.65rem, 7vw, 5.5rem);
+      line-height: 0.94;
+      letter-spacing: -0.08em;
+      margin: 0 0 22px;
+    }
+
+    .hero p {
+      font-size: clamp(1.05rem, 2.4vw, 1.28rem);
+      color: var(--muted);
+      max-width: 690px;
+      margin: 0 0 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: #334155;
+      font-size: 0.94rem;
+      font-weight: 800;
+    }
+
+    .trust-pill {
+      padding: 9px 12px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(226, 232, 240, 0.90);
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      background: rgba(37, 99, 235, 0.12);
+      border-radius: 999px;
+      top: -120px;
+      right: -120px;
+    }
+
+    .mini-dashboard {
+      position: relative;
+      display: grid;
+      gap: 14px;
+    }
+
+    .dash-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid var(--soft);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .dash-row strong {
+      font-size: 1.05rem;
+    }
+
+    .dash-row span {
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    .dash-price {
+      color: var(--green);
+      font-size: 1.5rem;
+      font-weight: 1000;
+    }
+
+    section {
+      padding: 54px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      color: var(--blue);
+      font-weight: 1000;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.78rem;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin: 8px 0 12px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 1.08rem;
+    }
+
+    .calculator-card {
+      background: var(--white);
+      border: 1px solid var(--soft);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 0.8fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      font-weight: 900;
+      color: #1e293b;
+      font-size: 0.92rem;
+    }
+
+    input,
+    select {
+      width: 100%;
+      height: 52px;
+      padding: 0 14px;
+      border-radius: 16px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      color: var(--ink);
+      font-size: 1rem;
+      outline: none;
+      transition: 0.18s ease;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .result-panel {
+      background:
+        linear-gradient(180deg, rgba(37, 99, 235, 0.08), rgba(255, 255, 255, 0.95)),
+        #fff;
+      border: 1px solid rgba(37, 99, 235, 0.13);
+      border-radius: 28px;
+      padding: 22px;
+      position: sticky;
+      top: 96px;
+    }
+
+    .result-main {
+      padding: 20px;
+      border-radius: 24px;
+      background: var(--ink);
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .result-main small {
+      color: #bfdbfe;
+      font-weight: 900;
+    }
+
+    .result-main .price {
+      font-size: clamp(2.5rem, 7vw, 4.2rem);
+      font-weight: 1000;
+      letter-spacing: -0.08em;
+      line-height: 1;
+      margin-top: 8px;
+    }
+
+    .metric-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .metric {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: #fff;
+      border: 1px solid var(--soft);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .metric strong {
+      font-size: 1.08rem;
+    }
+
+    .note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service-card,
+    .content-card {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--soft);
+      border-radius: 26px;
+      padding: 22px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .service-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: var(--blue-soft);
+      margin-bottom: 12px;
+      font-size: 1.32rem;
+    }
+
+    .service-card h3,
+    .content-card h3 {
+      margin: 0 0 8px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .service-card p,
+    .content-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .monetize-box {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: #fff;
+      border-radius: 32px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .monetize-box p {
+      color: #dbeafe;
+      margin: 0 0 18px;
+    }
+
+    .ad-placeholder {
+      min-height: 180px;
+      border: 2px dashed rgba(219, 234, 254, 0.38);
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 20px;
+      color: #bfdbfe;
+      background: rgba(255, 255, 255, 0.06);
+      font-weight: 900;
+    }
+
+    .seo-article {
+      background: #fff;
+      border: 1px solid var(--soft);
+      border-radius: 32px;
+      box-shadow: var(--shadow-soft);
+      padding: 28px;
+    }
+
+    .seo-article h3 {
+      margin-top: 0;
+      font-size: 1.55rem;
+      letter-spacing: -0.04em;
+    }
+
+    .seo-article p,
+    .seo-article li {
+      color: var(--muted);
+    }
+
+    .faq {
+      display: grid;
+      gap: 14px;
+    }
+
+    details {
+      background: #fff;
+      border: 1px solid var(--soft);
+      border-radius: 20px;
+      padding: 18px 20px;
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.04);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 1000;
+      color: #1e293b;
+    }
+
+    details p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    footer {
+      padding: 34px 0 96px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .mobile-sticky {
+      position: fixed;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      z-index: 30;
+      display: none;
+    }
+
+    .mobile-sticky a {
+      width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .hero-grid,
+      .calculator-card,
+      .monetize-box {
+        grid-template-columns: 1fr;
+      }
+
+      .result-panel {
+        position: relative;
+        top: 0;
+      }
+
+      .services-grid,
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mobile-sticky {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 24px, 1120px);
+      }
+
+      .nav {
+        height: 66px;
+      }
+
+      .brand {
+        font-size: 1.05rem;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .calculator-card,
+      .hero-card,
+      .seo-article,
+      .monetize-box {
+        padding: 18px;
+        border-radius: 24px;
+      }
+
+      section {
+        padding: 38px 0;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ServicePricePro",
+    "description": "Free local service pricing calculators for pressure washing, lawn care, house cleaning, mobile detailing, junk removal, handyman jobs, and more.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="ServicePricePro home">
+        <span class="brand-mark">💸</span>
+        <span>ServicePricePro</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#calculator">Calculator</a>
+        <a href="#services">Services</a>
+        <a href="#pricing-guide">Guide</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <a class="nav-cta" href="#calculator">Calculate Price</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">⚡ Free pricing tools for local service owners</div>
+          <h1>Know Exactly What To Charge.</h1>
+          <p>Free pricing calculators for pressure washing, lawn care, cleaning, detailing, junk removal, handyman jobs, and more — built for beginners who want to stop guessing and start pricing with confidence.</p>
+
+          <div class="hero-actions">
+            <a class="btn" href="#calculator">Use Free Calculator</a>
+            <a class="btn secondary" href="#services">See Future Tools</a>
+          </div>
+
+          <div class="trust-row" aria-label="Trust benefits">
+            <span class="trust-pill">✅ Beginner-friendly</span>
+            <span class="trust-pill">✅ Mobile-first</span>
+            <span class="trust-pill">✅ No sign-up required</span>
+            <span class="trust-pill">✅ Built for profit clarity</span>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Pricing preview dashboard">
+          <div class="mini-dashboard">
+            <div class="dash-row">
+              <div>
+                <strong>Driveway Wash</strong><br />
+                <span>1,200 sq ft · medium dirt</span>
+              </div>
+              <div class="dash-price">$210</div>
+            </div>
+            <div class="dash-row">
+              <div>
+                <strong>Estimated Profit</strong><br />
+                <span>After fuel, chemical, and labor</span>
+              </div>
+              <div class="dash-price">$142</div>
+            </div>
+            <div class="dash-row">
+              <div>
+                <strong>Quote Confidence</strong><br />
+                <span>Price with a clean range</span>
+              </div>
+              <div class="dash-price">High</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="calculator">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Free calculator</div>
+          <h2>Pressure Washing Price Calculator</h2>
+          <p>Enter a few simple numbers and get a suggested job price, estimated profit, labor time, and safe price range.</p>
+        </div>
+
+        <div class="calculator-card">
+          <form class="form-grid" onsubmit="event.preventDefault(); calculatePrice();">
+            <label>
+              Job Type
+              <select id="jobType">
+                <option value="driveway">Driveway</option>
+                <option value="house">House Wash</option>
+                <option value="deck">Deck / Patio</option>
+                <option value="sidewalk">Sidewalk</option>
+              </select>
+            </label>
+
+            <label>
+              Square Feet
+              <input id="squareFeet" type="number" min="100" step="50" value="1200" />
+            </label>
+
+            <label>
+              Dirt Level
+              <select id="dirtLevel">
+                <option value="1">Light Dirt</option>
+                <option value="1.18" selected>Medium Dirt</option>
+                <option value="1.38">Heavy Dirt</option>
+                <option value="1.62">Very Heavy / Stained</option>
+              </select>
+            </label>
+
+            <label>
+              Your Rate Per Sq Ft
+              <input id="rate" type="number" min="0.05" step="0.01" value="0.16" />
+            </label>
+
+            <label>
+              Chemical Cost
+              <input id="chemicalCost" type="number" min="0" step="1" value="18" />
+            </label>
+
+            <label>
+              Fuel / Travel Cost
+              <input id="fuelCost" type="number" min="0" step="1" value="15" />
+            </label>
+
+            <label>
+              Desired Hourly Pay
+              <input id="hourlyPay" type="number" min="10" step="5" value="50" />
+            </label>
+
+            <label>
+              Setup / Cleanup Minutes
+              <input id="setupMinutes" type="number" min="0" step="5" value="30" />
+            </label>
+
+            <div class="full">
+              <button class="btn" type="submit">Calculate My Price</button>
+            </div>
+          </form>
+
+          <aside class="result-panel" aria-live="polite">
+            <div class="result-main">
+              <small>Suggested Quote</small>
+              <div class="price" id="suggestedPrice">$210</div>
+            </div>
+
+            <div class="metric-grid">
+              <div class="metric">
+                <span>Safe Price Range</span>
+                <strong id="priceRange">$178 – $242</strong>
+              </div>
+              <div class="metric">
+                <span>Estimated Profit</span>
+                <strong id="profit">$142</strong>
+              </div>
+              <div class="metric">
+                <span>Estimated Time</span>
+                <strong id="time">1.7 hrs</strong>
+              </div>
+              <div class="metric">
+                <span>Profit Per Hour</span>
+                <strong id="profitHour">$84/hr</strong>
+              </div>
+            </div>
+
+            <p class="note">Starter guidance only. Always adjust for your market, equipment, water access, risk, stains, travel distance, and local competition.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Scale-ready platform</div>
+          <h2>More home service calculators coming next.</h2>
+          <p>ServicePricePro is designed to expand into a full evergreen calculator hub for beginner service businesses.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">🌱</div>
+            <h3>Lawn Care Pricing Calculator</h3>
+            <p>Estimate mowing, trimming, edging, travel, and recurring-service pricing.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🧽</div>
+            <h3>House Cleaning Calculator</h3>
+            <p>Price standard cleaning, deep cleaning, move-out cleaning, and supplies.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🚗</div>
+            <h3>Mobile Detailing Calculator</h3>
+            <p>Calculate exterior wash, interior detail, add-ons, chemicals, and time.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🛻</div>
+            <h3>Junk Removal Calculator</h3>
+            <p>Estimate load size, dump fees, labor, travel, and profit margins.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🧰</div>
+            <h3>Handyman Job Calculator</h3>
+            <p>Price small repairs, minimum job fees, material markup, and labor.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🪟</div>
+            <h3>Window Cleaning Calculator</h3>
+            <p>Estimate panes, screens, height difficulty, and route efficiency.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="content-grid">
+          <article class="content-card">
+            <h3>1. Enter the job details</h3>
+            <p>Put in the square footage, difficulty, local rate, fuel, chemicals, and target pay.</p>
+          </article>
+          <article class="content-card">
+            <h3>2. Get a price range</h3>
+            <p>See a suggested quote with a safer low-to-high range so you do not undercharge.</p>
+          </article>
+          <article class="content-card">
+            <h3>3. Protect your profit</h3>
+            <p>Use the profit and hourly estimate to decide if the job is worth taking.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container monetize-box">
+        <div>
+          <div class="section-kicker" style="color:#bfdbfe;">Monetization-ready</div>
+          <h2 style="margin-top:8px;">Built for ads, affiliate offers, and digital products.</h2>
+          <p>This section can later hold Adsterra ads, OGAds placements, affiliate links, or a Gumroad pricing toolkit. For now, it is safely marked as a placeholder.</p>
+          <a class="btn" style="background:#fff;color:#0f172a;box-shadow:none;" href="#calculator">Start Calculating</a>
+        </div>
+        <div class="ad-placeholder">
+          Ad / Gumroad / Affiliate Placeholder<br />
+          Replace this after the site is live.
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing-guide">
+      <div class="container">
+        <article class="seo-article">
+          <div class="section-kicker">Pricing guide</div>
+          <h2>How much should beginners charge for pressure washing?</h2>
+          <p>Most beginner pressure washing prices depend on square footage, dirt level, job difficulty, chemical cost, fuel cost, travel time, and how much profit the owner wants to keep. A calculator helps you avoid random guessing by turning the job into a simple pricing formula.</p>
+
+          <h3>What affects your price?</h3>
+          <ul>
+            <li><strong>Job size:</strong> Larger jobs usually cost more but may have better efficiency.</li>
+            <li><strong>Dirt level:</strong> Heavy buildup, oil, algae, and stains can require more time and chemicals.</li>
+            <li><strong>Travel:</strong> Fuel and distance should be included so the job does not eat your profit.</li>
+            <li><strong>Setup time:</strong> Loading, unloading, hose setup, rinsing, cleanup, and customer communication all take time.</li>
+            <li><strong>Minimum fee:</strong> Many service businesses need a minimum job price to make small jobs worth taking.</li>
+          </ul>
+
+          <p><strong>Important:</strong> This tool is a beginner-friendly estimate, not a guaranteed market price. Your final quote should reflect your local market, experience, equipment, safety risk, and the real condition of the job.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">FAQ</div>
+          <h2>Simple answers before you quote.</h2>
+        </div>
+
+        <div class="faq">
+          <details open>
+            <summary>Is this calculator free?</summary>
+            <p>Yes. The calculator is free to use and does not require an account.</p>
+          </details>
+          <details>
+            <summary>Can beginners use this?</summary>
+            <p>Yes. It is built for new local service owners who need a simple way to estimate pricing without complicated spreadsheets.</p>
+          </details>
+          <details>
+            <summary>Does this guarantee the perfect price?</summary>
+            <p>No. It gives a helpful estimate. You still need to adjust for your local market, job risk, customer expectations, and operating costs.</p>
+          </details>
+          <details>
+            <summary>Will more calculators be added?</summary>
+            <p>Yes. The platform is structured to expand into lawn care, cleaning, detailing, junk removal, handyman services, and more.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="mobile-sticky">
+    <a class="btn" href="#calculator">Calculate My Price</a>
+  </div>
+
+  <footer>
+    <div class="container">
+      <strong>ServicePricePro</strong><br />
+      Know What To Charge Before You Take The Job.<br />
+      © <span id="year"></span> ServicePricePro. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    function currency(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0
+      }).format(value);
+    }
+
+    function calculatePrice() {
+      const jobType = document.getElementById("jobType").value;
+      const squareFeet = Number(document.getElementById("squareFeet").value) || 0;
+      const dirtLevel = Number(document.getElementById("dirtLevel").value) || 1;
+      const rate = Number(document.getElementById("rate").value) || 0;
+      const chemicalCost = Number(document.getElementById("chemicalCost").value) || 0;
+      const fuelCost = Number(document.getElementById("fuelCost").value) || 0;
+      const hourlyPay = Number(document.getElementById("hourlyPay").value) || 0;
+      const setupMinutes = Number(document.getElementById("setupMinutes").value) || 0;
+
+      const jobMultipliers = {
+        driveway: 1,
+        house: 1.22,
+        deck: 1.18,
+        sidewalk: 0.92
+      };
+
+      const productionRates = {
+        driveway: 900,
+        house: 650,
+        deck: 550,
+        sidewalk: 1000
+      };
+
+      const multiplier = jobMultipliers[jobType] || 1;
+      const productionRate = productionRates[jobType] || 850;
+
+      const laborHours = (squareFeet / productionRate) * dirtLevel + (setupMinutes / 60);
+      const laborValue = laborHours * hourlyPay;
+      const basePrice = squareFeet * rate * dirtLevel * multiplier;
+      const rawTotal = basePrice + chemicalCost + fuelCost + laborValue;
+
+      const minimumPrice = jobType === "house" ? 225 : 125;
+      const suggested = Math.max(rawTotal, minimumPrice);
+      const low = suggested * 0.85;
+      const high = suggested * 1.15;
+      const totalCosts = chemicalCost + fuelCost + laborValue;
+      const profit = suggested - totalCosts;
+      const profitHour = profit / Math.max(laborHours, 0.25);
+
+      document.getElementById("suggestedPrice").textContent = currency(suggested);
+      document.getElementById("priceRange").textContent = `${currency(low)} – ${currency(high)}`;
+      document.getElementById("profit").textContent = currency(profit);
+      document.getElementById("time").textContent = `${laborHours.toFixed(1)} hrs`;
+      document.getElementById("profitHour").textContent = `${currency(profitHour)}/hr`;
+    }
+
+    document.querySelectorAll("input, select").forEach((field) => {
+      field.addEventListener("input", calculatePrice);
+      field.addEventListener("change", calculatePrice);
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    calculatePrice();
+  </script>
+</body>
+</html>
