@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>House Cleaning Pricing Calculator for Beginners | ServicePricePro</title>
+
+<meta name="description" content="Calculate beginner-friendly house cleaning prices based on home size, cleaning level, add-ons, travel time, supplies, and desired profit." />
+
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#2563eb" />
+
+<style>
+:root{
+--blue:#2563eb;
+--blue-dark:#1d4ed8;
+--blue-soft:#eff6ff;
+--green:#16a34a;
+--green-soft:#f0fdf4;
+--text:#0f172a;
+--muted:#64748b;
+--border:#e2e8f0;
+--bg:#f8fafc;
+--card:#ffffff;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+}
+
+.container{
+width:min(1120px,92%);
+margin:auto;
+}
+
+header{
+background:#fff;
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:10;
+}
+
+.nav{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:18px 0;
+gap:20px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:800;
+font-size:1.2rem;
+color:var(--text);
+text-decoration:none;
+}
+
+.brand-mark{
+width:42px;
+height:42px;
+border-radius:12px;
+background:linear-gradient(135deg,#2563eb,#38bdf8);
+display:grid;
+place-items:center;
+color:#fff;
+font-size:1.2rem;
+}
+
+.nav-links{
+display:flex;
+gap:22px;
+align-items:center;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#334155;
+font-weight:600;
+font-size:.95rem;
+}
+
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:14px 22px;
+border-radius:16px;
+font-weight:700;
+text-decoration:none;
+border:none;
+cursor:pointer;
+}
+
+.btn-primary{
+background:var(--blue);
+color:#fff;
+box-shadow:0 10px 30px rgba(37,99,235,.25);
+}
+
+.btn-secondary{
+background:#fff;
+color:var(--text);
+border:1px solid var(--border);
+}
+
+.hero{
+padding:70px 0 50px;
+}
+
+.hero-grid{
+display:grid;
+grid-template-columns:1.2fr .8fr;
+gap:40px;
+align-items:center;
+}
+
+.badge{
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:10px 16px;
+background:var(--blue-soft);
+border:1px solid #dbeafe;
+border-radius:999px;
+font-weight:700;
+font-size:.9rem;
+color:var(--blue-dark);
+margin-bottom:24px;
+}
+
+h1{
+font-size:4rem;
+line-height:.95;
+letter-spacing:-2px;
+margin-bottom:24px;
+max-width:620px;
+}
+
+.hero p{
+font-size:1.2rem;
+color:var(--muted);
+max-width:620px;
+margin-bottom:28px;
+}
+
+.hero-actions{
+display:flex;
+gap:14px;
+flex-wrap:wrap;
+margin-bottom:28px;
+}
+
+.trust-row{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+}
+
+.trust-pill{
+background:#fff;
+border:1px solid var(--border);
+border-radius:999px;
+padding:10px 16px;
+font-weight:700;
+font-size:.92rem;
+}
+
+.hero-card{
+background:#fff;
+border:1px solid var(--border);
+border-radius:28px;
+padding:28px;
+box-shadow:0 20px 60px rgba(15,23,42,.06);
+}
+
+.quote-card-title{
+font-size:.8rem;
+font-weight:800;
+letter-spacing:.08em;
+color:var(--muted);
+margin-bottom:12px;
+text-transform:uppercase;
+}
+
+.big-price{
+font-size:4rem;
+font-weight:900;
+color:var(--green);
+margin:10px 0;
+}
+
+.mini-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+margin-top:24px;
+}
+
+.mini-card{
+border:1px solid var(--border);
+border-radius:18px;
+padding:18px;
+}
+
+.mini-label{
+font-size:.85rem;
+color:var(--muted);
+font-weight:700;
+margin-bottom:6px;
+}
+
+.mini-value{
+font-size:1.4rem;
+font-weight:900;
+}
+
+.quick-answer{
+background:var(--blue-soft);
+border:1px solid #dbeafe;
+padding:22px;
+border-radius:24px;
+margin:10px 0 60px;
+}
+
+.quick-answer strong{
+color:var(--blue-dark);
+}
+
+section{
+padding:40px 0;
+}
+
+.section-label{
+font-size:.85rem;
+font-weight:900;
+letter-spacing:.08em;
+color:var(--blue);
+margin-bottom:10px;
+text-transform:uppercase;
+}
+
+.section-title{
+font-size:3rem;
+line-height:1;
+margin-bottom:16px;
+}
+
+.section-sub{
+font-size:1.1rem;
+color:var(--muted);
+max-width:760px;
+margin-bottom:36px;
+}
+
+.calculator-grid{
+display:grid;
+grid-template-columns:1fr .9fr;
+gap:24px;
+align-items:start;
+}
+
+.calculator-card,
+.result-card{
+background:#fff;
+border:1px solid var(--border);
+border-radius:28px;
+padding:28px;
+}
+
+.field{
+margin-bottom:22px;
+}
+
+label{
+display:block;
+font-weight:700;
+margin-bottom:10px;
+}
+
+input,
+select{
+width:100%;
+padding:16px;
+border-radius:16px;
+border:1px solid var(--border);
+font-size:1rem;
+}
+
+.field-help{
+font-size:.92rem;
+color:var(--muted);
+margin-top:8px;
+}
+
+.checkbox-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.check{
+display:flex;
+align-items:center;
+gap:10px;
+padding:14px;
+border:1px solid var(--border);
+border-radius:16px;
+}
+
+.check input{
+width:auto;
+}
+
+.result-top{
+background:var(--green-soft);
+border:1px solid #bbf7d0;
+border-radius:22px;
+padding:22px;
+margin-bottom:22px;
+}
+
+.result-top-label{
+font-size:.85rem;
+font-weight:900;
+letter-spacing:.08em;
+color:#166534;
+text-transform:uppercase;
+margin-bottom:10px;
+}
+
+.result-price{
+font-size:4rem;
+font-weight:900;
+color:#15803d;
+line-height:1;
+}
+
+.result-list{
+display:grid;
+gap:16px;
+}
+
+.result-item{
+display:flex;
+justify-content:space-between;
+gap:20px;
+padding-bottom:14px;
+border-bottom:1px solid var(--border);
+}
+
+.result-item strong{
+font-size:1.1rem;
+}
+
+.notice{
+margin-top:24px;
+background:var(--blue-soft);
+border:1px solid #dbeafe;
+border-radius:20px;
+padding:18px;
+font-weight:700;
+color:var(--blue-dark);
+}
+
+footer{
+padding:60px 0;
+text-align:center;
+color:var(--muted);
+font-size:.95rem;
+}
+
+@media(max-width:900px){
+
+.hero-grid,
+.calculator-grid{
+grid-template-columns:1fr;
+}
+
+h1{
+font-size:3rem;
+}
+
+.nav-links{
+display:none;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container nav">
+
+<a class="brand" href="../index.html">
+<span class="brand-mark">🧼</span>
+<span>ServicePricePro</span>
+</a>
+
+<nav class="nav-links">
+<a href="../index.html">Home</a>
+<a href="#calculator">Calculator</a>
+<a href="#guide">Guide</a>
+<a href="#faq">FAQ</a>
+</nav>
+
+<a class="btn btn-primary" href="#calculator">Calculate Price</a>
+
+</div>
+</header>
+
+<main>
+
+<section class="hero">
+<div class="container hero-grid">
+
+<div>
+
+<div class="badge">🧼 Free cleaning pricing tool</div>
+
+<h1>House Cleaning Pricing Calculator for Beginners</h1>
+
+<p>
+Estimate what to charge for recurring or deep cleaning jobs using home size,
+cleaning level, add-ons, supplies, travel time, and desired profit.
+</p>
+
+<div class="hero-actions">
+<a class="btn btn-primary" href="#calculator">Calculate Cleaning Price</a>
+<a class="btn btn-secondary" href="#guide">Learn Pricing Basics</a>
+</div>
+
+<div class="trust-row">
+<span class="trust-pill">✅ Beginner-friendly</span>
+<span class="trust-pill">✅ No sign-up required</span>
+<span class="trust-pill">✅ Built for profit clarity</span>
+</div>
+
+</div>
+
+<aside class="hero-card">
+
+<div class="quote-card-title">Example Estimate</div>
+
+<h3>3 bedroom home · standard clean</h3>
+
+<div class="big-price">$248</div>
+
+<p>Example target price after labor, supplies, travel, and profit.</p>
+
+<div class="mini-grid">
+
+<div class="mini-card">
+<div class="mini-label">Estimated Time</div>
+<div class="mini-value">4.2 hrs</div>
+</div>
+
+<div class="mini-card">
+<div class="mini-label">Price Range</div>
+<div class="mini-value">$219–$285</div>
+</div>
+
+</div>
+
+</aside>
+
+</div>
+</section>
+
+<section>
+<div class="container">
+
+<div class="quick-answer">
+<strong>Quick Answer:</strong>
+A house cleaning pricing calculator helps beginners estimate what to charge by using
+home size, cleaning level, add-ons, supplies, travel time, and desired profit.
+It gives a safer starting estimate before adjusting for local market conditions.
+</div>
+
+</div>
+</section>
+
+<section id="calculator">
+
+<div class="container">
+
+<div class="section-label">Free Calculator</div>
+
+<h2 class="section-title">Free House Cleaning Pricing Calculator</h2>
+
+<p class="section-sub">
+Enter the job details below to estimate a low price, target price,
+high price, estimated labor time, supplies, and estimated profit.
+</p>
+
+<div class="calculator-grid">
+
+<div class="calculator-card">
+
+<div class="field">
+<label for="homeSize">Home Size</label>
+
+<select id="homeSize">
+<option value="120">Small apartment</option>
+<option value="180">2 bedroom home</option>
+<option value="240" selected>3 bedroom home</option>
+<option value="320">Large family home</option>
+<option value="450">Deep clean / move out</option>
+</select>
+
+<div class="field-help">
+Larger homes require more labor time and cleaning supplies.
+</div>
+</div>
+
+<div class="field">
+<label for="difficulty">Cleaning Level</label>
+
+<select id="difficulty">
+<option value="1">Light cleaning</option>
+<option value="1.2" selected>Standard cleaning</option>
+<option value="1.5">Heavy buildup</option>
+<option value="1.8">Deep cleaning</option>
+</select>
+
+<div class="field-help">
+Heavy buildup, pet hair, grease, and clutter increase labor time.
+</div>
+</div>
+
+<div class="field">
+
+<label>Included Add-Ons</label>
+
+<div class="checkbox-grid">
+
+<label class="check">
+<input type="checkbox" value="25" checked>
+<span>Inside fridge</span>
+</label>
+
+<label class="check">
+<input type="checkbox" value="35">
+<span>Inside oven</span>
+</label>
+
+<label class="check">
+<input type="checkbox" value="40">
+<span>Inside windows</span>
+</label>
+
+<label class="check">
+<input type="checkbox" value="30">
+<span>Laundry</span>
+</label>
+
+</div>
+
+</div>
+
+<div class="field">
+<label for="travel">Round-Trip Travel Time (minutes)</label>
+
+<input id="travel" type="number" value="20" />
+
+<div class="field-help">
+Travel time still costs fuel and labor time.
+</div>
+
+</div>
+
+<div class="field">
+<label for="supplies">Cleaning Supply Cost</label>
+
+<input id="supplies" type="number" value="18" />
+</div>
+
+<div class="field">
+<label for="profit">Desired Profit After Expenses</label>
+
+<input id="profit" type="number" value="55" />
+</div>
+
+<button class="btn btn-primary" onclick="calculatePrice()">
+Calculate Cleaning Price
+</button>
+
+</div>
+
+<div class="result-card">
+
+<div class="result-top">
+
+<div class="result-top-label">
+Suggested Target Price
+</div>
+
+<div class="result-price" id="targetPrice">$248</div>
+
+</div>
+
+<div class="result-list">
+
+<div class="result-item">
+<span>Suggested low price</span>
+<strong id="lowPrice">$219</strong>
+</div>
+
+<div class="result-item">
+<span>Suggested high price</span>
+<strong id="highPrice">$285</strong>
+</div>
+
+<div class="result-item">
+<span>Estimated labor time</span>
+<strong id="laborTime">4.2 hrs</strong>
+</div>
+
+<div class="result-item">
+<span>Estimated expenses</span>
+<strong id="expenseTotal">$38</strong>
+</div>
+
+<div class="result-item">
+<span>Estimated profit after expenses</span>
+<strong id="profitTotal">$55</strong>
+</div>
+
+</div>
+
+<div class="notice">
+This is a beginner-friendly estimate, not a guaranteed local market price.
+Adjust for your area, job difficulty, customer expectations, pets, and home condition.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="guide">
+
+<div class="container">
+
+<div class="section-label">Pricing Guide</div>
+
+<h2 class="section-title">How Beginners Can Price Cleaning Jobs</h2>
+
+<p class="section-sub">
+New cleaning businesses usually undercharge because they forget to include
+travel time, supply costs, bathroom buildup, kitchen grease, and profit.
+This calculator helps create safer starting estimates.
+</p>
+
+</div>
+
+</section>
+
+<section id="faq">
+
+<div class="container">
+
+<div class="section-label">FAQ</div>
+
+<h2 class="section-title">House Cleaning Pricing Questions</h2>
+
+<div class="calculator-card">
+
+<h3>How much should beginners charge for house cleaning?</h3>
+
+<p>
+Many beginners start between $120 and $350 depending on home size,
+cleaning condition, bathrooms, kitchens, add-ons, and local market pricing.
+</p>
+
+<br>
+
+<h3>Should deep cleaning cost more?</h3>
+
+<p>
+Yes. Deep cleaning usually takes much longer and requires more effort,
+supplies, and labor time.
+</p>
+
+<br>
+
+<h3>Do cleaning supplies affect pricing?</h3>
+
+<p>
+Absolutely. Supplies, fuel, travel, and equipment wear should all be included.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+Built for beginner service business owners • ServicePricePro
+</div>
+</footer>
+
+<script>
+function calculatePrice(){
+
+const base =
+parseFloat(document.getElementById('homeSize').value);
+
+const difficulty =
+parseFloat(document.getElementById('difficulty').value);
+
+const travel =
+parseFloat(document.getElementById('travel').value) || 0;
+
+const supplies =
+parseFloat(document.getElementById('supplies').value) || 0;
+
+const desiredProfit =
+parseFloat(document.getElementById('profit').value) || 0;
+
+let addons = 0;
+
+document.querySelectorAll('.check input:checked').forEach(box=>{
+addons += parseFloat(box.value);
+});
+
+const labor = ((base * difficulty) / 60) + (travel / 60);
+
+const laborCost = labor * 35;
+
+const target =
+Math.round(laborCost + addons + supplies + desiredProfit);
+
+const low = Math.round(target * .88);
+
+const high = Math.round(target * 1.15);
+
+document.getElementById('targetPrice').innerText =
+'$' + target;
+
+document.getElementById('lowPrice').innerText =
+'$' + low;
+
+document.getElementById('highPrice').innerText =
+'$' + high;
+
+document.getElementById('laborTime').innerText =
+labor.toFixed(1) + ' hrs';
+
+document.getElementById('expenseTotal').innerText =
+'$' + Math.round(supplies + 20);
+
+document.getElementById('profitTotal').innerText =
+'$' + desiredProfit;
+
+}
+</script>
+
+</body>
+</html>
